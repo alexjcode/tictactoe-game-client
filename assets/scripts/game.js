@@ -31,17 +31,30 @@ const isTakenAll = () => {
   }
 }
 
-const isWin = (x, y, z) => {
+const isWin = (x, y, z) => { // eslint-disable-line
   return (
     mark(x) === mark(y) && mark(y) === mark(z) &&
     mark(x) === mark(z) && isTaken3(x, y, z)
   )
 }
 
+// GAME LOGIC ///////////////////////////////////
+
+const winners = (x, y, z) => {
+  if (
+    mark(x) === mark(y) && mark(y) === mark(z) &&
+    mark(x) === mark(z) && isTaken3(x, y, z)
+  ) {
+    return [mark(x), x, y, z]
+  } else {
+    return false
+  }
+}
+
 const isWinAny = () => {
   return (
-    isWin(0, 1, 2) || isWin(3, 4, 5) || isWin(6, 7, 8) || isWin(2, 5, 8) ||
-    isWin(1, 4, 7) || isWin(0, 3, 6) || isWin(0, 4, 8) || isWin(2, 4, 6)
+    winners(0, 1, 2) || winners(3, 4, 5) || winners(6, 7, 8) || winners(2, 5, 8) ||
+    winners(1, 4, 7) || winners(0, 3, 6) || winners(0, 4, 8) || winners(2, 4, 6)
   )
 }
 
@@ -49,12 +62,14 @@ const isDraw = () => {
   return (!isWinAny() && isTakenAll())
 }
 
+// GAME LOGIC ///////////////////////////////////
+
 const outcome = (x, y, z) => { // eslint-disable-line
   if (isWinAny()) {
     console.log('win')
   } else if (isDraw()) {
     console.log('draw')
-  } else {}
+  }
 }
 
 // if (
