@@ -29,6 +29,7 @@ const isTakenAll = () => {
   for (let i = 0; i < 9; i++) {
     acc = acc && isTaken(i)
   }
+  return acc
 }
 
 const isWin = (x, y, z) => { // eslint-disable-line
