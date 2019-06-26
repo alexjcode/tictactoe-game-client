@@ -7,6 +7,7 @@ _SpecRunner.html
 node_modules
 package-lock.json
 package.json
+unstaged
 
 # Created by https://www.gitignore.io/api/osx,linux
 
