@@ -14,3 +14,10 @@ $(() => {
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
 })
+
+const gameEvents = require('./game/events')
+
+$(() => {
+  $('#sign-up').on('submit', gameEvents.onSignUp)
+  $('#sign-in').on('submit', gameEvents.onSignIn)
+})

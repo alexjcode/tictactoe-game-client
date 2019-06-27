@@ -14,7 +14,7 @@ const newGame = formData => {
   })
 }
 
-const thisMove = formData => {
+const newMove = formData => {
   return $.ajax({
     url: config.authApiUrl + '/change-password',
     data: formData,
@@ -56,5 +56,5 @@ const thisMove = formData => {
 
 module.exports = {
   newGame,
-  thisMove
+  newMove
 }

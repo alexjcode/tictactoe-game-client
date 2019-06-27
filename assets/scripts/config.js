@@ -2,18 +2,18 @@
 
 // AUTH /////////////////////////////////
 
-let authApiUrl
-const authApiUrls = {
-  production: 'https://wdi-library-api.herokuapp.com',
-  development: 'https://wdi-library-api.herokuapp.com'
-  // development: 'http://localhost:4741'
-}
-
-if (window.location.hostname === 'localhost') {
-  authApiUrl = authApiUrls.development
-} else {
-  authApiUrl = authApiUrls.production
-}
+// let authApiUrl
+// const authApiUrls = {
+//   production: 'https://wdi-library-api.herokuapp.com',
+//   development: 'https://wdi-library-api.herokuapp.com'
+//   // development: 'http://localhost:4741'
+// }
+//
+// if (window.location.hostname === 'localhost') {
+//   authApiUrl = authApiUrls.development
+// } else {
+//   authApiUrl = authApiUrls.production
+// }
 
 // GAME /////////////////////////////////
 
@@ -33,6 +33,6 @@ if (window.location.hostname === 'localhost') {
 // EXPORTS //////////////////////////////
 
 module.exports = {
-  authApiUrl,
+  // authApiUrl,
   gameApiUrl
 }
