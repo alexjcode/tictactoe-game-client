@@ -18,6 +18,7 @@ const store = require('../store.js')
 
 const signUpSuccessful = responseData => {
   successMessage('You signed up successfully!')
+  $('#sign-up').hide()
 }
 
 const signUpFailure = () => {
@@ -29,7 +30,10 @@ const signInSuccessful = responseData => {
   successMessage('You signed in successfully!')
   // store user token
   store.user = responseData.user
-  // hide sign up / sign in forms
+  $('#sign-up').hide()
+  $('#sign-in').hide()
+  $('#sign-out').show()
+  $('#change-password').show()
 }
 
 const signInFailure = () => {
@@ -46,6 +50,10 @@ const changePasswordFailure = () => {
 
 const signOutSuccessful = () => {
   successMessage('Signed out successfully!')
+  $('#sign-up').show()
+  $('#sign-in').show()
+  $('#change-password').hide()
+  $('#sign-out').hide()
 }
 
 const signOutFailure = () => {

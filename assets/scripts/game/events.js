@@ -4,20 +4,17 @@ const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 
-const onNewGame = (event) => {
+const onNewGame = () => {
   event.preventDefault()
-  const formData = getFormFields(event.target)
-  console.log(formData)
-  api.showBook(formData.book.id)
-    .then(ui.createBookSuccess)
-    .catch(ui.createBookFailure)
+  // console.log('')
+  api.newGame()
+    .then(ui.newGameSuccess)
+    .catch(ui.newGameFailure)
 }
 
 const onIndexGame = (event) => {
   api.indexBooks()
-    // do something on success
     .then(ui.indexBooksSuccess)
-    // catch failure
     .catch(ui.indexBooksFailure)
 }
 

@@ -10,6 +10,12 @@ const authEvents = require('./auth/events')
 const gameEvents = require('./game/events')
 
 $(() => {
+  $('#tt-board').hide()
+  $('#change-password').hide()
+  $('#sign-out').hide()
+})
+
+$(() => {
   $('#sign-up').on('submit', authEvents.onSignUp)
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#change-password').on('submit', authEvents.onChangePassword)
