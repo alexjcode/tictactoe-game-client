@@ -16,49 +16,105 @@ const failMessage = message => {
 
 const store = require('../store.js')
 
-const signUpSuccessful = responseData => {
+const newGameSuccess = () => {
   successMessage('You signed up successfully!')
 }
 
-const signUpFailure = () => {
+const newGameFailure = () => {
   failMessage('Sign up failure')
 }
 
-const signInSuccessful = responseData => {
-  console.log('responseData is', responseData)
-  successMessage('You signed in successfully!')
-  // store user token
-  store.user = responseData.user
-  // hide sign up / sign in forms
+// const newGameSuccess = (data) => {
+//   $('#message').text('Create Books Success!! Noice.')
+//   $('#message').css('color', 'green')
+//   $('#message').show()
+//   hideMessaging()
+//   $('form').trigger('reset')
+// }
+//
+// const newGameFailure = (res) => {
+//   $('#books-display').html('')
+//   $('#message').text('Show Book FAILURE!')
+//   $('#message').css('color', 'red')
+//   $('#message').show()
+//   hideMessaging()
+//   $('form').trigger('reset')
+// }
+
+const indexGameSuccess = (data) => {
+  console.log('index books success', data)
+  $('#books-display').html('') // clear
+  data.books.forEach((book) => {
+    const bookHtml = (`
+      <h4>Title: ${book.title}</h4>
+      <p>Author: ${book.author}</p>
+      <p>ID: ${book.id}</p>
+      <br>
+    `)
+    $('#books-display').append(bookHtml)
+  })
+  $('#message').text('Index Books Success!! Noice.')
+  $('#message').css('color', 'green')
+  $('#message').show()
+  hideMessaging()
 }
 
-const signInFailure = () => {
-  failMessage('Sign in failure')
+const indexGameFailure = (error) => {
+  console.log('index books failure', error)
+  $('#message').text('Index Books Failure!! Try again...')
+  $('#message').css('color', 'red')
+  $('#message').show()
+  hideMessaging()
 }
 
-const changePasswordSuccessful = responseData => {
-  successMessage('Password changed successfully!')
+const showGameSuccess = (data) => {
+  // builing html to display single book
+  $('#books-display').html(`
+    <h4>Title: ${data.book.title}</h4>
+    <p>Author: ${data.book.author}</p>
+    <p>ID: ${data.book.id}</p>
+    <br>
+  `)
+  $('#message').text('Show Books Success!! Noice.')
+  $('#message').css('color', 'green')
+  $('#message').show()
+  hideMessaging()
+  $('form').trigger('reset')
 }
 
-const changePasswordFailure = () => {
-  failMessage('Password change failure')
+const showGameFailure = (res) => {
+  $('#books-display').html('')
+  $('#message').text('Show Book FAILURE!')
+  $('#message').css('color', 'red')
+  $('#message').show()
+  hideMessaging()
+  $('form').trigger('reset')
 }
 
-const signOutSuccessful = () => {
-  successMessage('Signed out successfully!')
+const newMoveSuccess = (data) => {
+  console.log('update book success', data)
+  $('#message').text('Update Books Success!! Noice.')
+  $('#message').css('color', 'green')
+  $('#message').show()
+  hideMessaging()
+  $('form').trigger('reset')
 }
 
-const signOutFailure = () => {
-  failMessage('Sign out failure')
+const newMoveFailure = (error) => {
+  console.log('update book failure', error)
+  $('#message').text('Index Books Failure!! Try again...')
+  $('#message').css('color', 'red')
+  $('#message').show()
+  hideMessaging()
 }
 
 module.exports = {
-  signUpSuccessful,
-  signUpFailure,
-  signInSuccessful,
-  signInFailure,
-  changePasswordSuccessful,
-  changePasswordFailure,
-  signOutSuccessful,
-  signOutFailure
+  newGameSuccess,
+  newGameFailure,
+  indexGameSuccess,
+  indexGameFailure,
+  showGameSuccess,
+  showGameFailure,
+  newMoveSuccess,
+  newMoveFailure
 }

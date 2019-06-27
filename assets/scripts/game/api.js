@@ -3,10 +3,9 @@
 const config = require('../config.js') // eslint-disable-line
 const store = require('../store.js') // eslint-disable-line
 
-const newGame = formData => {
+const newGame = () => {
   return $.ajax({
-    url: config.apiUrl + '/sign-up',
-    data: formData,
+    url: config.apiUrl + '/games',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -14,7 +13,24 @@ const newGame = formData => {
   })
 }
 
-const newMove = formData => {
+const indexGame = () => {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET'
+  })
+}
+
+const showGame = (id) => {
+  return $.ajax({
+    url: config.apiUrl + '/books/' + id,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const newMove = (formData) => {
   return $.ajax({
     url: config.apiUrl + '/change-password',
     data: formData,
@@ -25,36 +41,17 @@ const newMove = formData => {
   })
 }
 
-// const signIn = formData => {
+// const updateBook = (data) => {
 //   return $.ajax({
-//     url: config.apiUrl + '/sign-in',
-//     data: formData,
-//     method: 'POST'
-//   })
-// }
-
-// const changePassword = formData => {
-//   return $.ajax({
-//     url: config.apiUrl + '/change-password',
-//     data: formData,
+//     url: config.apiUrl + '/books/' + data.book.id,
 //     method: 'PATCH',
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token
-//     }
-//   })
-// }
-
-// const signOut = () => {
-//   return $.ajax({
-//     url: config.apiUrl + '/sign-out',
-//     method: 'DELETE',
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token
-//     }
+//     data
 //   })
 // }
 
 module.exports = {
   newGame,
+  indexGame,
+  showGame,
   newMove
 }

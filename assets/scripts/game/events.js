@@ -4,43 +4,44 @@ const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 
-const onSignUp = (event) => {
+const onNewGame = (event) => {
   event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
-  api.signUp(formData)
-    .then(ui.signUpSuccessful)
-    .catch(ui.signUpFailure)
+  const formData = getFormFields(event.target)
+  console.log(formData)
+  api.showBook(formData.book.id)
+    .then(ui.createBookSuccess)
+    .catch(ui.createBookFailure)
 }
 
-const onSignIn = (event) => {
-  event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
-  api.signIn(formData)
-    .then(ui.signInSuccessful)
-    .catch(ui.signInFailure)
+const onIndexGame = (event) => {
+  api.indexBooks()
+    // do something on success
+    .then(ui.indexBooksSuccess)
+    // catch failure
+    .catch(ui.indexBooksFailure)
 }
 
-const onChangePassword = (event) => {
+const onShowGame = (event) => {
   event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
-  api.changePassword(formData)
-    .then(ui.changePasswordSuccessful)
-    .catch(ui.changePasswordFailure)
+  const formData = getFormFields(event.target)
+  console.log(formData)
+  api.showBook(formData.book.id)
+    .then(ui.showBookSuccess)
+    .catch(ui.showBookFailure)
 }
 
-const onSignOut = (event) => {
+const onNewMove = (event) => {
   event.preventDefault()
-  api.signOut()
-    .then(ui.signOutSuccessful)
-    .catch(ui.signOutFailure)
+  const formData = getFormFields(event.target)
+  console.log(formData)
+  api.updateBook(formData, formData.book.id)
+    .then(ui.updateBookSuccess)
+    .catch(ui.updateBookFailure)
 }
 
 module.exports = {
-  onSignUp,
-  onSignIn,
-  onChangePassword,
-  onSignOut
+  onNewGame,
+  onIndexGame,
+  onShowGame,
+  onNewMove
 }

@@ -13,50 +13,118 @@
       <header>
         <h1>Tic-Tac-Toe Game</h1>
       </header>
-      <!-- // -->
-      <div>
-        <!-- // -->
-      </div>
-      <!-- // -->
+
       <section>
         <h3 id="message"></h3>
       </section>
+
       <!-- // -->
+
+      <!-- // GAME START // -->
+      <div class="row">
+        <div class="tt-board container col-lg-8">
+          <div class="row">
+            <div class="tt-cell col" data-cell-index='0'>
+              <!-- // CELL #0 // -->
+              <img src="#" alt="" class="t0">
+            </div>
+            <div class="tt-cell col" data-cell-index='1'>
+              <!-- // CELL #1 // -->
+              <img src="#" alt="" class="t1">
+            </div>
+            <div class="tt-cell col" data-cell-index='2'>
+              <!-- // CELL #2 // -->
+              <img src="#" alt="" class="t2">
+            </div>
+          </div>
+          <div class="row">
+            <div class="tt-cell col" data-cell-index='3'>
+              <!-- // CELL #3 // -->
+              <img src="#" alt="" class="t3">
+            </div>
+            <div class="tt-cell col" data-cell-index='4'>
+              <!-- // CELL #4 // -->
+              <img src="#" alt="" class="t4">
+            </div>
+            <div class="tt-cell col" data-cell-index='5'>
+              <!-- // CELL #5 // -->
+              <img src="#" alt="" class="t5">
+            </div>
+          </div>
+          <div class="row">
+            <div class="tt-cell col" data-cell-index='6'>
+              <!-- // CELL #6 // -->
+              <img src="#" alt="" class="t6">
+            </div>
+            <div class="tt-cell col" data-cell-index='7'>
+              <!-- // CELL #7 // -->
+              <img src="#" alt="" class="t7">
+            </div>
+            <div class="tt-cell col" data-cell-index='8'>
+              <!-- // CELL #8 // -->
+              <img src="#" alt="" class="t8">
+            </div>
+          </div>
+        </div>
+        <div class="tt-board container col-lg-1"></div>
+        <div id="game-menu" class="col-lg-3">
+          <form id="new-game" class="row">
+            <button class="btn btn-primary btn-block">New Game</button>
+          </form>
+          <form id="reset-game" class="row">
+            <h4>Reset Game</h4>
+            <input class="form-control" required type="number" placeholder="Enter Game ID Here" name="games[id]">
+            <button class="btn btn-primary btn-block">Submit</button>
+          </form>
+          <form id="load-game" class="row">
+            <h4>Load Game</h4>
+            <input class="form-control" required type="number" placeholder="Enter Game ID Here" name="games[id]">
+            <button class="btn btn-primary btn-block">Submit</button>
+          </form>
+        </div>
+
+      </div>
+
+
+      <!-- // GAME END // -->
+
+      <!-- // -->
+
       <div class="row">
 
         <!-- // -->
 
-        <!-- <form id="sign-up" class="col-md-6 mb-5">
+        <form id="sign-up" class="col-md-6 mb-5">
           <h2>Sign Up</h2>
           <input class="form-control" type="email" name="credentials[email]" placeholder="tom@myspace.com">
           <input class="form-control" type="password" name="credentials[password]" placeholder="Don't Use 1234!!!">
           <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-          <button class="btn btn-primary">Sign Up</button>
-        </form> -->
+          <button class="btn btn-primary btn-block">Sign Up</button>
+        </form>
 
         <!-- // -->
 
-        <!-- <form id="sign-in" class="col-md-6">
+        <form id="sign-in" class="col-md-6">
           <h2>Sign In</h2>
           <input class="form-control" type="email" name="credentials[email]" placeholder="tom@myspace.com">
           <input class="form-control" type="password" name="credentials[password]" placeholder="Don't Use 1234!!!">
-          <button class="btn btn-primary">Sign In</button>
-        </form> -->
+          <button class="btn btn-primary btn-block">Sign In</button>
+        </form>
 
         <!-- // -->
 
-        <!-- <form id="change-password" class="col-md-6">
+        <form id="change-password" class="col-md-6">
           <h2>Change Password</h2>
           <input class="form-control" type="password" name="passwords[old]" placeholder="Don't Use Ye Olde 123!!!">
           <input class="form-control" type="password" name="passwords[new]" placeholder="Don't Use Ye Neue 1234!!!!">
-          <button class="btn btn-primary">Change Password</button>
-        </form> -->
+          <button class="btn btn-primary btn-block">Change Password</button>
+        </form>
 
         <!-- // -->
 
-        <!-- <form id="sign-out" class="sign-out col-12">
-          <button class="btn btn-primary">Sign Out</button>
-        </form> -->
+        <form id="sign-out" class="sign-out col-12">
+          <button class="btn btn-primary btn-block">Sign Out</button>
+        </form>
 
         <!-- // -->
 

@@ -1,6 +1,6 @@
 # VARIABLE=VALUE sh curl-scripts/auth/sign-in.sh
 
-curl "https://wdi-library-api.herokuapp.com/sign-in" \
+curl "https://tic-tac-toe-wdi.herokuapp.com/sign-in" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
