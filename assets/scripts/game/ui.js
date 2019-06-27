@@ -2,6 +2,8 @@
 
 // auto-hide game board
 
+const store = require('../store.js') // eslint-disable-line
+
 const successMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('failure')
@@ -18,32 +20,15 @@ const failMessage = message => {
 
 const newGameSuccess = () => {
   $('#tt-board').show()
-  successMessage('New game begin')
+  successMessage(`New game begin ${store.user.token}`)
 }
 
 const newGameFailure = () => {
-  failMessage('New game failure')
+  failMessage(`New game failure`)
 }
 
-// const newGameSuccess = (data) => {
-//   $('#message').text('Create Books Success!! Noice.')
-//   $('#message').css('color', 'green')
-//   $('#message').show()
-//   hideMessaging()
-//   $('form').trigger('reset')
-// }
-//
-// const newGameFailure = (res) => {
-//   $('#books-display').html('')
-//   $('#message').text('Show Book FAILURE!')
-//   $('#message').css('color', 'red')
-//   $('#message').show()
-//   hideMessaging()
-//   $('form').trigger('reset')
-// }
-
 const indexGameSuccess = (data) => {
-  console.log('Index Game success', data)
+  console.log(`Index Game success`, data)
   $('#books-display').html('') // clear
   data.books.forEach((book) => {
     const bookHtml = (`
@@ -54,18 +39,12 @@ const indexGameSuccess = (data) => {
     `)
     $('#books-display').append(bookHtml)
   })
-  $('#message').text('Index Game Success!!')
-  $('#message').css('color', 'green')
-  $('#message').show()
-  // hideMessaging()
+  successMessage.text(`Index Game Success!! ${store.user.token}`)
 }
 
 const indexGameFailure = (error) => {
-  console.log('Index books failure', error)
-  $('#message').text('Index Game Failure!! Try again...')
-  $('#message').css('color', 'red')
-  $('#message').show()
-  // hideMessaging()
+  console.log(`Index books failure`, error)
+  failMessage(`Index Game Failure!! Try again... ${store.user.token}`)
 }
 
 const showGameSuccess = (data) => {
@@ -75,37 +54,21 @@ const showGameSuccess = (data) => {
     <p>ID: ${data.book.id}</p>
     <br>
   `)
-  $('#message').text('Show Game Success!! Noice.')
-  $('#message').css('color', 'green')
-  $('#message').show()
-  // hideMessaging()
-  $('form').trigger('reset')
+  successMessage.text(`Show Game Success!! Noice. ${store.user.token}`)
 }
 
 const showGameFailure = (res) => {
-  $('#books-display').html('')
-  $('#message').text('Show Game FAILURE!')
-  $('#message').css('color', 'red')
-  $('#message').show()
-  // hideMessaging()
-  $('form').trigger('reset')
+  failMessage.text(`Show Game FAILURE! ${store.user.token}`)
 }
 
 const newMoveSuccess = (data) => {
-  console.log('update book success', data)
-  $('#message').text('Update Game Success!! Noice.')
-  $('#message').css('color', 'green')
-  $('#message').show()
-  // hideMessaging()
-  $('form').trigger('reset')
+  console.log(`update book success`, data)
+  successMessage(`New move success!! Noice. ${store.user.token}`)
 }
 
 const newMoveFailure = (error) => {
-  console.log('update book failure', error)
-  $('#message').text('Index Game Failure!! Try again...')
-  $('#message').css('color', 'red')
-  $('#message').show()
-  // hideMessaging()
+  console.log(`update book failure`, error)
+  failMessage(`New move failure!! Try again ${store.user.token}`)
 }
 
 module.exports = {

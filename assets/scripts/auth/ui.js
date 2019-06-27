@@ -26,10 +26,11 @@ const signUpFailure = () => {
 }
 
 const signInSuccessful = responseData => {
-  console.log('responseData is', responseData)
-  successMessage('You signed in successfully!')
+  // console.log('responseData is', responseData)
   // store user token
   store.user = responseData.user
+  const token = store.user.token
+  successMessage(`You signed in successfully! ${token}`)
   $('#sign-up').hide()
   $('#sign-in').hide()
   $('#sign-out').show()

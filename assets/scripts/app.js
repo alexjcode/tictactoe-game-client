@@ -21,8 +21,8 @@ $(() => {
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
   //
-  $('#new-game').on('submit', gameEvents.onNewGame)
-  $('#index-game').on('submit', gameEvents.onIndexGame)
-  $('#show-game').on('submit', gameEvents.onShowGame)
-  $('#new-move').on('submit', gameEvents.onNewMove)
+  $('#new-game').on('submit', gameEvents.onNewGame) // DONE
+  // $('#index-game').on('submit', gameEvents.onIndexGame)
+  // $('#show-game').on('submit', gameEvents.onShowGame)
+  $('.tt-cell').on('click', gameEvents.onNewMove)
 })
