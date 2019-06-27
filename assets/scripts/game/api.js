@@ -5,7 +5,7 @@ const store = require('../store.js') // eslint-disable-line
 
 const newGame = formData => {
   return $.ajax({
-    url: config.authApiUrl + '/sign-up',
+    url: config.apiUrl + '/sign-up',
     data: formData,
     method: 'POST',
     headers: {
@@ -16,7 +16,7 @@ const newGame = formData => {
 
 const newMove = formData => {
   return $.ajax({
-    url: config.authApiUrl + '/change-password',
+    url: config.apiUrl + '/change-password',
     data: formData,
     method: 'PATCH',
     headers: {
@@ -27,7 +27,7 @@ const newMove = formData => {
 
 // const signIn = formData => {
 //   return $.ajax({
-//     url: config.authApiUrl + '/sign-in',
+//     url: config.apiUrl + '/sign-in',
 //     data: formData,
 //     method: 'POST'
 //   })
@@ -35,7 +35,7 @@ const newMove = formData => {
 
 // const changePassword = formData => {
 //   return $.ajax({
-//     url: config.authApiUrl + '/change-password',
+//     url: config.apiUrl + '/change-password',
 //     data: formData,
 //     method: 'PATCH',
 //     headers: {
@@ -46,7 +46,7 @@ const newMove = formData => {
 
 // const signOut = () => {
 //   return $.ajax({
-//     url: config.authApiUrl + '/sign-out',
+//     url: config.apiUrl + '/sign-out',
 //     method: 'DELETE',
 //     headers: {
 //       Authorization: 'Token token=' + store.user.token
