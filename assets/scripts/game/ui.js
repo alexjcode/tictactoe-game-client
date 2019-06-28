@@ -59,6 +59,7 @@ const indexGameFailure = (error) => {
 
 const newMoveSuccess = (data) => {
   store.game = data.game
+  console.log(store.game)
   let cell = 'z'
   for (let i = 0; i < 9; i++) {
     cell = store.game.cells[i]

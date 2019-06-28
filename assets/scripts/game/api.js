@@ -23,15 +23,15 @@ const indexGame = () => {
   })
 }
 
-const showGame = (formData) => {
-  return $.ajax({
-    url: config.apiUrl + '/games/' + store.game.id,
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
-}
+// const showGame = (formData) => {
+//   return $.ajax({
+//     url: config.apiUrl + '/games/' + store.game.id,
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Token token=' + store.user.token
+//     }
+//   })
+// }
 
 const newMove = (formData, gameID) => {
   return $.ajax({
@@ -47,6 +47,6 @@ const newMove = (formData, gameID) => {
 module.exports = {
   newGame,
   indexGame,
-  showGame,
+  // showGame,
   newMove
 }

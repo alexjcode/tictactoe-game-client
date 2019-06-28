@@ -4,8 +4,7 @@
 const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
-let turn = 'z'
-store.turn = turn
+store.turn = 'z'
 
 // let gameID = -1
 
@@ -15,9 +14,8 @@ const onNewGame = () => {
     .then(ui.newGameSuccess)
     .catch(ui.newGameFailure)
   // gameID = store.game.id
-  turn = 'x'
-  store.turn = turn
-  $('#current-turn').text(turn)
+  store.turn = 'x'
+  $('#current-turn').text(store.turn)
   // console.log(store)
 }
 
@@ -56,7 +54,7 @@ const onNewMove = (event) => {
     "game": {
       "cell": {
         "index": index,
-        "value": turn
+        "value": store.turn
       },
       "over": over
     }

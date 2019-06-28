@@ -6,7 +6,7 @@ $primary: #ff1493;
 .border {
   border: 3px solid $black;
   margin: 20px;
-  padding: 20px;
+  // padding: 20px;
 }
 
 .success {
@@ -49,4 +49,6 @@ h1, h2, h3, h4 {
 
 .x {
   max-height: 90%;
+  // vertical-align: middle;
+  padding: 15px;
 }
