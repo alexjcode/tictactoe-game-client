@@ -5,15 +5,16 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 let turn = 'z'
 const store = require('../store.js') // eslint-disable-line
-let gameID = -1
+// let gameID = -1
 
 const onNewGame = () => {
   event.preventDefault()
   api.newGame()
     .then(ui.newGameSuccess)
     .catch(ui.newGameFailure)
-  gameID = store.user.id
+  // gameID = store.game.id
   turn = 'x'
+  $('#current-turn').text(turn)
   // console.log(store)
 }
 
@@ -45,9 +46,9 @@ const onNewGame = () => {
 const onNewMove = (event) => {
   event.preventDefault()
   const index = event.target.getAttribute('data-cell-index')
-  turn = $('#current-turn').text()
+  // turn = $('#current-turn').text()
   const over = false
-  const data = {
+  const data = JSON.stringify({
     game: {
       cell: {
         index: index,
@@ -55,9 +56,9 @@ const onNewMove = (event) => {
       },
       over: over
     }
-  }
+  })
   // console.log(formData)
-  api.newMove(JSON.stringify(data), gameID)
+  api.newMove(data, store.game.id)
     .then(ui.newMoveSuccess)
     .catch(ui.newMoveFailure)
   if (turn === 'x') {

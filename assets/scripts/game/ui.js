@@ -18,13 +18,15 @@ const failMessage = message => {
   $('form').trigger('reset')
 }
 
-const newGameSuccess = () => {
+const newGameSuccess = (responseData) => {
+  store.game = responseData.game
   $('#tt-board').show()
-  successMessage(`New game begin ${store.user.token}`)
+  successMessage(`New game begin ${store.user.token} [${store.game.id}]`)
+  console.log(store)
 }
 
 const newGameFailure = () => {
-  failMessage(`New game failure`)
+  failMessage(`New game failure ${store.user.token}`)
 }
 
 const indexGameSuccess = (data) => {
@@ -39,12 +41,12 @@ const indexGameSuccess = (data) => {
     `)
     $('#books-display').append(bookHtml)
   })
-  successMessage.text(`Index Game Success!! ${store.user.token}`)
+  successMessage.text(`Index Game Success!! ${store.user.token} [${store.game.id}]`)
 }
 
 const indexGameFailure = (error) => {
   console.log(`Index books failure`, error)
-  failMessage(`Index Game Failure!! Try again... ${store.user.token}`)
+  failMessage(`Index Game Failure!! Try again... ${store.user.token} [${store.game.id}]`)
 }
 
 const showGameSuccess = (data) => {
@@ -54,21 +56,21 @@ const showGameSuccess = (data) => {
     <p>ID: ${data.book.id}</p>
     <br>
   `)
-  successMessage.text(`Show Game Success!! Noice. ${store.user.token}`)
+  successMessage.text(`Show Game Success!! Noice. ${store.user.token} [${store.game.id}]`)
 }
 
 const showGameFailure = (res) => {
-  failMessage.text(`Show Game FAILURE! ${store.user.token}`)
+  failMessage.text(`Show Game FAILURE! ${store.user.token} [${store.game.id}]`)
 }
 
 const newMoveSuccess = (data) => {
   console.log(`update book success`, data)
-  successMessage(`New move success!! Noice. ${store.user.token}`)
+  successMessage(`New move success!! Noice. ${store.user.token} [${store.game.id}]`)
 }
 
 const newMoveFailure = (error) => {
   console.log(`update book failure`, error)
-  failMessage(`New move failure!! Try again ${store.user.token}`)
+  failMessage(`New move failure!! Try again ${store.user.token} [${store.game.id}]`)
 }
 
 module.exports = {
