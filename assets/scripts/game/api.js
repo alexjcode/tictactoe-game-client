@@ -23,9 +23,9 @@ const indexGame = () => {
   })
 }
 
-const showGame = (id) => {
+const showGame = (formData) => {
   return $.ajax({
-    url: config.apiUrl + '/games/' + id,
+    url: config.apiUrl + '/games/' + store.game.id,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token

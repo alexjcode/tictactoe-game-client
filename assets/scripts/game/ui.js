@@ -41,7 +41,7 @@ const indexGameSuccess = (data) => {
     `)
     $('#books-display').append(bookHtml)
   })
-  successMessage.text(`Index Game Success!! ${store.user.token} [${store.game.id}]`)
+  successMessage(`Index Game Success!! ${store.user.token} [${store.game.id}]`)
 }
 
 const indexGameFailure = (error) => {
@@ -49,21 +49,32 @@ const indexGameFailure = (error) => {
   failMessage(`Index Game Failure!! Try again... ${store.user.token} [${store.game.id}]`)
 }
 
-const showGameSuccess = (data) => {
-  $('#books-display').html(`
-    <h4>Title: ${data.book.title}</h4>
-    <p>Author: ${data.book.author}</p>
-    <p>ID: ${data.book.id}</p>
-    <br>
-  `)
-  successMessage.text(`Show Game Success!! Noice. ${store.user.token} [${store.game.id}]`)
-}
-
-const showGameFailure = (res) => {
-  failMessage.text(`Show Game FAILURE! ${store.user.token} [${store.game.id}]`)
-}
+// const showGameSuccess = (data) => {
+//   successMessage(`Show Game Success!! Noice. ${store.user.token} [${store.game.id}]`)
+// }
+//
+// const showGameFailure = (res) => {
+//   failMessage(`Show Game FAILURE! ${store.user.token} [${store.game.id}]`)
+// }
 
 const newMoveSuccess = (data) => {
+  store.game = data.game
+  let cell = 'z'
+  for (let i = 0; i < 9; i++) {
+    cell = store.game.cells[i]
+    if (cell === 'x') {
+      $(`div[data-cell-index=${i}]`).html('<img src="public/images/x.png" alt="x" class="x">')
+    } else if (cell === 'o') {
+      $(`div[data-cell-index=${i}]`).html('<img src="public/images/o.png" alt="o">')
+    }
+  }
+  if (store.turn === 'x') {
+    store.turn = 'o'
+  } else if (store.turn === 'o' || store.turn === 'z') {
+    store.turn = 'x'
+  }
+  $('#current-turn').text(store.turn)
+  console.log(store.turn)
   console.log(`update book success`, data)
   successMessage(`New move success!! Noice. ${store.user.token} [${store.game.id}]`)
 }
@@ -78,8 +89,8 @@ module.exports = {
   newGameFailure,
   indexGameSuccess,
   indexGameFailure,
-  showGameSuccess,
-  showGameFailure,
+  // showGameSuccess,
+  // showGameFailure,
   newMoveSuccess,
   newMoveFailure
 }

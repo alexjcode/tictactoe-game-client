@@ -3,8 +3,10 @@
 // const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('../store.js')
 let turn = 'z'
-const store = require('../store.js') // eslint-disable-line
+store.turn = turn
+
 // let gameID = -1
 
 const onNewGame = () => {
@@ -14,6 +16,7 @@ const onNewGame = () => {
     .catch(ui.newGameFailure)
   // gameID = store.game.id
   turn = 'x'
+  store.turn = turn
   $('#current-turn').text(turn)
   // console.log(store)
 }
@@ -34,45 +37,40 @@ const onNewGame = () => {
 //     .catch(ui.indexGameFailure)
 // }
 //
+
 // const onShowGame = (event) => {
 //   event.preventDefault()
-//   const formData = getFormFields(event.target)
-//   console.log(formData)
-//   api.showBook(formData.book.id)
+//   // const id = event.target.getAttribute('data-cell-index')
+//   api.showGame()
 //     .then(ui.showGameSuccess)
 //     .catch(ui.showGameFailure)
 // }
 
 const onNewMove = (event) => {
   event.preventDefault()
-  const index = event.target.getAttribute('data-cell-index')
+  const index = parseInt(event.target.getAttribute('data-cell-index'))
   // turn = $('#current-turn').text()
   const over = false
-  const data = JSON.stringify({
-    game: {
-      cell: {
-        index: index,
-        value: turn
+
+  const data = {
+    "game": {
+      "cell": {
+        "index": index,
+        "value": turn
       },
-      over: over
+      "over": over
     }
-  })
-  // console.log(formData)
+  }
+
+  console.log(data)
   api.newMove(data, store.game.id)
     .then(ui.newMoveSuccess)
     .catch(ui.newMoveFailure)
-  if (turn === 'x') {
-    turn = 'o'
-  } else if (turn === 'o' || turn === 'z') {
-    turn = 'x'
-  }
-  $('#current-turn').text(turn)
-  console.log(turn)
 }
 
 module.exports = {
   onNewGame,
   // onIndexGame,
-  // onShowGame
+  // onShowGame,
   onNewMove
 }
