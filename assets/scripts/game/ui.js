@@ -82,12 +82,12 @@ const newMoveSuccess = (data) => {
   $('#current-turn').text(store.turn)
   console.log(store.turn)
   console.log(`update book success`, data)
-  successMessage(`New move success!! Noice. ${store.user.token} [${store.game.id}]`)
+  successMessage(`New move ${store.user.token} [${store.game.id}]`)
 }
 
 const newMoveFailure = (error) => {
   console.log(`update book failure`, error)
-  failMessage(`New move failure!! Try again ${store.user.token} [${store.game.id}]`)
+  failMessage(`Couldn't move. Try again ${store.user.token} [${store.game.id}]`)
 }
 
 const loadGameSuccess = (responseData) => {
@@ -115,8 +115,13 @@ const loadGameSuccess = (responseData) => {
   } else {
     store.turn = 'z'
   }
-  successMessage(`New game begin ${store.user.token} [${store.game.id}]`)
+  successMessage(`Game Loaded ${store.user.token} [${store.game.id}]`)
   console.log(store)
+}
+
+const loadGameFailure = (error) => {
+  console.log(`update book failure`, error)
+  failMessage(`This game doesn't exist ${store.user.token} [${store.game.id}]`)
 }
 
 module.exports = {
@@ -130,5 +135,6 @@ module.exports = {
   // showGameFailure,
   newMoveSuccess,
   newMoveFailure,
-  loadGameSuccess
+  loadGameSuccess,
+  loadGameFailure
 }

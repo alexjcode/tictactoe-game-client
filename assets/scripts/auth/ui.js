@@ -18,7 +18,7 @@ const store = require('../store.js')
 
 const signUpSuccessful = responseData => {
   successMessage('You signed up successfully!')
-  $('#sign-up').hide()
+  // $('#sign-up').hide()
 }
 
 const signUpFailure = () => {
@@ -35,6 +35,8 @@ const signInSuccessful = responseData => {
   $('#sign-in').hide()
   $('#sign-out').show()
   $('#change-password').show()
+  $('#new-game').show()
+  $('#load-game').show()
 }
 
 const signInFailure = () => {
@@ -57,6 +59,8 @@ const signOutSuccessful = () => {
   $('#sign-out').hide()
   $('#tt-board').hide()
   $('#current-turn').hide()
+  $('#new-game').hide()
+  $('#load-game').hide()
 }
 
 const signOutFailure = () => {
