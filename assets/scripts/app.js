@@ -24,5 +24,6 @@ $(() => {
   $('#sign-out').on('submit', authEvents.onSignOut)
   $('#new-game').on('submit', gameEvents.onNewGame)
   $(`div[data-cell-index]`).on(multiClick, gameEvents.onNewMove)
-  // // $('#index-game').on('submit', gameEvents.onIndexGame)
+  $('#load-game').on('submit', gameEvents.onLoadGame)
+  // $('#index-game').on('submit', gameEvents.onIndexGame)
 })

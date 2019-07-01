@@ -90,6 +90,35 @@ const newMoveFailure = (error) => {
   failMessage(`New move failure!! Try again ${store.user.token} [${store.game.id}]`)
 }
 
+const loadGameSuccess = (responseData) => {
+  store.game = responseData.game
+  $('#tt-board').show()
+  $('#current-turn').show()
+  let cell = 'z'
+  let xCells = 0
+  let oCells = 0
+  for (let i = 0; i < 9; i++) {
+    cell = store.game.cells[i]
+    if (cell === 'x') {
+      $(`div[data-cell-index=${i}]`).html('X')
+      xCells++
+      // $(`div[data-cell-index=${i}]`).html('<img src="public/images/x.png" alt="x" class="x">')
+    } else if (cell === 'o') {
+      $(`div[data-cell-index=${i}]`).html('O')
+      oCells++
+    }
+  }
+  if (oCells === xCells) {
+    store.turn = 'x'
+  } else if (xCells > oCells) {
+    store.turn = 'o'
+  } else {
+    store.turn = 'z'
+  }
+  successMessage(`New game begin ${store.user.token} [${store.game.id}]`)
+  console.log(store)
+}
+
 module.exports = {
   newGameSuccess,
   newGameFailure,
@@ -100,5 +129,6 @@ module.exports = {
   // showGameSuccess,
   // showGameFailure,
   newMoveSuccess,
-  newMoveFailure
+  newMoveFailure,
+  loadGameSuccess
 }

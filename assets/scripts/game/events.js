@@ -1,6 +1,6 @@
 'use strict'
 
-// const getFormFields = require('../../../lib/get-form-fields.js')
+const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
@@ -34,13 +34,15 @@ const onNewGame = () => {
 // }
 //
 
-// const onShowGame = (event) => {
-//   event.preventDefault()
-//   // const id = event.target.getAttribute('data-cell-index')
-//   api.showGame()
-//     .then(ui.showGameSuccess)
-//     .catch(ui.showGameFailure)
-// }
+const onLoadGame = (event) => {
+  event.preventDefault()
+  // const id = event.target.getAttribute('data-cell-index')
+  const form = event.target
+  const formData = getFormFields(form)
+  api.loadGame(formData)
+    .then(ui.loadGameSuccess)
+    // .catch(ui.showGameFailure)
+}
 
 const onNewMove = (event) => {
   event.preventDefault()
@@ -78,6 +80,6 @@ const onNewMove = (event) => {
 module.exports = {
   onNewGame,
   // onIndexGame,
-  // onShowGame,
+  onLoadGame,
   onNewMove
 }
