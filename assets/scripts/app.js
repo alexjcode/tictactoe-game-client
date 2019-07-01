@@ -8,11 +8,13 @@
 
 const authEvents = require('./auth/events')
 const gameEvents = require('./game/events')
+const multiClick = 'ontouchstart' in window ? 'touchstart' : 'click'
 
 $(() => {
   $('#tt-board').hide()
   $('#change-password').hide()
   $('#sign-out').hide()
+  $('#current-turn').hide()
 })
 
 $(() => {
@@ -20,8 +22,7 @@ $(() => {
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
-  //
   $('#new-game').on('submit', gameEvents.onNewGame)
-  $('.tt-cell').on('click', gameEvents.onNewMove)
+  $(`div[data-cell-index]`).on(multiClick, gameEvents.onNewMove)
   // // $('#index-game').on('submit', gameEvents.onIndexGame)
 })

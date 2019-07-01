@@ -6,8 +6,6 @@ const ui = require('./ui.js')
 const store = require('../store.js')
 store.turn = 'z'
 
-// let gameID = -1
-
 const onNewGame = () => {
   event.preventDefault()
   api.newGame()
@@ -47,23 +45,34 @@ const onNewGame = () => {
 const onNewMove = (event) => {
   event.preventDefault()
   const index = parseInt(event.target.getAttribute('data-cell-index'))
-  // turn = $('#current-turn').text()
-  const over = false
-
-  const data = {
-    "game": {
-      "cell": {
-        "index": index,
-        "value": store.turn
-      },
-      "over": over
+  console.log(index)
+  console.log(index >= 0)
+  if (!(index >= 0)) {
+    return store.game
+  } else {
+    const over = false
+    const data = {
+      "game": {
+        "cell": {
+          "index": index,
+          "value": store.turn
+        },
+        "over": over
+      }
+    }
+    console.log('before api', data)
+    const storeCells = store.game.cells
+    console.log('storecells: ', storeCells)
+    const dataIndex = data.game.cell.index
+    console.log('index', dataIndex)
+    if (store.game.cells[index] !== '' && store.game.cells !== ['', '', '', '', '', '', '', '', '']) {
+      ui.failMessage(`That cell is already taken ${store.user.token}`)
+    } else {
+      api.newMove(data)
+        .then(ui.newMoveSuccess)
+        .catch(ui.newMoveFailure)
     }
   }
-
-  console.log(data)
-  api.newMove(data, store.game.id)
-    .then(ui.newMoveSuccess)
-    .catch(ui.newMoveFailure)
 }
 
 module.exports = {

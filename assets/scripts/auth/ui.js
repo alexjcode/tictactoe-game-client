@@ -55,6 +55,8 @@ const signOutSuccessful = () => {
   $('#sign-in').show()
   $('#change-password').hide()
   $('#sign-out').hide()
+  $('#tt-board').hide()
+  $('#current-turn').hide()
 }
 
 const signOutFailure = () => {

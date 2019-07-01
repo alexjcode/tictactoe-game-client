@@ -2,7 +2,7 @@
 
 // auto-hide game board
 
-const store = require('../store.js') // eslint-disable-line
+const store = require('../store.js')
 
 const successMessage = message => {
   $('#message').text(message)
@@ -21,6 +21,10 @@ const failMessage = message => {
 const newGameSuccess = (responseData) => {
   store.game = responseData.game
   $('#tt-board').show()
+  $('#current-turn').show()
+  for (let i = 0; i < 9; i++) {
+    $(`div[data-cell-index=${i}]`).html('')
+  }
   successMessage(`New game begin ${store.user.token} [${store.game.id}]`)
   console.log(store)
 }
@@ -64,9 +68,10 @@ const newMoveSuccess = (data) => {
   for (let i = 0; i < 9; i++) {
     cell = store.game.cells[i]
     if (cell === 'x') {
-      $(`div[data-cell-index=${i}]`).html('<img src="public/images/x.png" alt="x" class="x">')
+      $(`div[data-cell-index=${i}]`).html('X')
+      // $(`div[data-cell-index=${i}]`).html('<img src="public/images/x.png" alt="x" class="x">')
     } else if (cell === 'o') {
-      $(`div[data-cell-index=${i}]`).html('<img src="public/images/o.png" alt="o">')
+      $(`div[data-cell-index=${i}]`).html('O')
     }
   }
   if (store.turn === 'x') {
@@ -90,6 +95,8 @@ module.exports = {
   newGameFailure,
   indexGameSuccess,
   indexGameFailure,
+  failMessage,
+  successMessage,
   // showGameSuccess,
   // showGameFailure,
   newMoveSuccess,
