@@ -27,5 +27,5 @@ $(() => {
   $('#new-game').on('submit', gameEvents.onNewGame)
   $(`div[data-cell-index]`).on(multiClick, gameEvents.onNewMove)
   $('#load-game').on('submit', gameEvents.onLoadGame)
-  // $('#index-game').on('submit', gameEvents.onIndexGame)
+  $('#index-game').on('submit', gameEvents.onIndexGame)
 })

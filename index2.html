@@ -35,49 +35,45 @@
 
       <!-- // -->
 
-      <div class="row">
+      <div class="game-board">
         <!-- // GAME START // -->
-        <div id="tt-board" class="tt-board container col-lg-8">
-          <div class="row">
-            <div class="tt-cell col" data-cell-index="0">
+        <div id="tt-board" class="container-fluid embed-responsive-1by1 game-board">
+          <div class="row embed-responsive item">
+            <div class="tt-cell col-4" data-cell-index="0">
             </div>
-            <div class="tt-cell col" data-cell-index="1">
+            <div class="tt-cell col-4" data-cell-index="1">
             </div>
-            <div class="tt-cell col" data-cell-index="2">
+            <div class="tt-cell col-4" data-cell-index="2">
             </div>
-          </div>
-          <div class="row">
-            <div class="tt-cell col" data-cell-index="3">
+            <div class="tt-cell col-4" data-cell-index="3">
             </div>
-            <div class="tt-cell col" data-cell-index="4">
+            <div class="tt-cell col-4" data-cell-index="4">
             </div>
-            <div class="tt-cell col" data-cell-index="5">
+            <div class="tt-cell col-4" data-cell-index="5">
             </div>
-          </div>
-          <div class="row">
-            <div class="tt-cell col" data-cell-index="6">
+            <div class="tt-cell col-4" data-cell-index="6">
             </div>
-            <div class="tt-cell col" data-cell-index="7">
+            <div class="tt-cell col-4" data-cell-index="7">
             </div>
-            <div class="tt-cell col" data-cell-index="8">
+            <div class="tt-cell col-4" data-cell-index="8">
             </div>
           </div>
         </div>
-        <!-- // GAME END // -->
-        <div class="tt-board container col-lg-1"></div>
-        <!-- // MENU // -->
-        <div id="game-menu" class="col-lg-3">
-          <form id="new-game" class="row">
-            <button class="btn btn-primary btn-block">New Game</button>
-          </form>
-          <form id="load-game" class="row">
-            <h4>Load Game</h4>
-            <input class="form-control" required type="number" placeholder="Enter Game ID Here" name="games[id]">
-            <button class="btn btn-primary btn-block">Submit</button>
-          </form>
-        </div>
-        <!-- // -->
       </div>
+      <!-- // GAME END // -->
+      <div class="tt-board container col-lg-1"></div>
+      <!-- // MENU // -->
+      <div id="game-menu" class="col-lg-3">
+        <form id="new-game" class="row">
+          <button class="btn btn-primary btn-block">New Game</button>
+        </form>
+        <form id="load-game" class="row">
+          <h4>Load Game</h4>
+          <input class="form-control" required type="number" placeholder="Enter Game ID Here" name="games[id]">
+          <button class="btn btn-primary btn-block">Submit</button>
+        </form>
+      </div>
+      <!-- // -->
 
       <!-- // -->
 

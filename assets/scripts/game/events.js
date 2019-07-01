@@ -6,80 +6,71 @@ const ui = require('./ui.js')
 const store = require('../store.js')
 store.turn = 'z'
 
+const onIndexGame = () => {
+  event.preventDefault()
+  api.indexGame()
+    .then(ui.indexGameSuccess)
+    .catch(ui.indexGameFailure)
+}
+
 const onNewGame = () => {
   event.preventDefault()
   api.newGame()
     .then(ui.newGameSuccess)
     .catch(ui.newGameFailure)
-  // gameID = store.game.id
   store.turn = 'x'
   $('#current-turn').text(store.turn)
-  // console.log(store)
+  onIndexGame()
 }
-
-// const onIndexGame = (event) => {
-//   const id = event.target.getAttribute('data-cell-index')
-//   const data = {
-//     game: {
-//       cell: {
-//         index: id,
-//         value: turn
-//       }
-//     }
-//   }
-//
-//   api.indexBooks(data)
-//     .then(ui.indexGameSuccess)
-//     .catch(ui.indexGameFailure)
-// }
-//
 
 const onLoadGame = (event) => {
   event.preventDefault()
-  // const id = event.target.getAttribute('data-cell-index')
   const form = event.target
   const formData = getFormFields(form)
   api.loadGame(formData)
     .then(ui.loadGameSuccess)
-    // .catch(ui.showGameFailure)
+    .catch(ui.loadGameFailure)
+  onIndexGame()
 }
 
 const onNewMove = (event) => {
   event.preventDefault()
   const index = parseInt(event.target.getAttribute('data-cell-index'))
-  console.log(index)
-  console.log(index >= 0)
+  // console.log(index)
+  // console.log(index >= 0)
   if (!(index >= 0)) {
     return store.game
   } else {
-    const over = false
     const data = {
-      "game": {
-        "cell": {
-          "index": index,
-          "value": store.turn
+      "game": { // eslint-disable-line
+        "cell": { // eslint-disable-line
+          "index": index, // eslint-disable-line
+          "value": store.turn // eslint-disable-line
         },
-        "over": over
+        "over": store.game.over // eslint-disable-line
       }
     }
-    console.log('before api', data)
-    const storeCells = store.game.cells
-    console.log('storecells: ', storeCells)
-    const dataIndex = data.game.cell.index
-    console.log('index', dataIndex)
     if (store.game.cells[index] !== '' && store.game.cells !== ['', '', '', '', '', '', '', '', '']) {
       ui.failMessage(`That cell is already taken ${store.user.token}`)
     } else {
       api.newMove(data)
         .then(ui.newMoveSuccess)
         .catch(ui.newMoveFailure)
+      console.log('store.game', store.game)
+      console.log('outcome', ui.outcome(store.game))
+      console.log('DATA 2', data)
     }
+    // const res = api.indexGame() // .responseJSON // .games
+    // console.log('response data', res)
+    // console.log('res.responseJSON', res.games)
+    // console.log('typeof response data', typeof res)
   }
+  onIndexGame()
 }
 
 module.exports = {
   onNewGame,
-  // onIndexGame,
+  onIndexGame,
   onLoadGame,
   onNewMove
 }
