@@ -1,9 +1,8 @@
 'use strict'
 
-// auto-hide game board
-
 const store = require('../store.js')
 const win = require('./win')
+const events = require('./events')
 
 const successMessage = message => {
   $('#message').text(message)
@@ -39,7 +38,8 @@ const score = (input) => {
       totalGames++
     }
   }
-  if (score.game === undefined || score.game.over !== false) {
+  // // console.log(events.clicks)
+  if (events.clicks === 0 || store.game.over !== false) {
     $('#scorekeeper').text(`${xWins} : ${totalGames}`)
     $('#scorekeeper2').text(`${xWins} Wins, ${oWins} Losses, ${draws} Draws`)
   }
@@ -93,8 +93,10 @@ const newMoveSuccess = (data) => {
   const winning = win.outcome(store.game)
   if (winning === 'z') {
     successMessage(`This match ends in a draw`)
+    store.over = true
   } else if (winning) {
     successMessage(`${winning} is the victor`)
+    store.over = true
   }
 }
 

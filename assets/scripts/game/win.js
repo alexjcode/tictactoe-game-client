@@ -15,7 +15,7 @@ const isTakenAll = (game) => {
 const winners = (game, x, y, z) => {
   if (
     game.cells[x] === game.cells[y] && game.cells[y] === game.cells[z] &&
-    game.cells[x] === game.cells[z] && isTaken3(x, y, z)
+    game.cells[x] === game.cells[z] && isTaken3(game.cells[x], game.cells[y], game.cells[y])
   ) {
     // console.log('winners', game.cells[x])
     return game.cells[x]
@@ -26,6 +26,7 @@ const winners = (game, x, y, z) => {
 }
 
 const isWinAny = (game) => {
+  // console.log(game.cells)
   return (
     winners(game, 0, 1, 2) || winners(game, 3, 4, 5) ||
     winners(game, 6, 7, 8) || winners(game, 2, 5, 8) ||

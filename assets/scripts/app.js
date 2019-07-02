@@ -9,6 +9,7 @@
 const authEvents = require('./auth/events')
 const gameEvents = require('./game/events')
 const multiClick = 'ontouchstart' in window ? 'touchstart' : 'click'
+const store = require('./store.js')
 
 $(() => {
   $('#tt-board').hide()
@@ -26,7 +27,10 @@ $(() => {
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
   $('#new-game').on('submit', gameEvents.onNewGame)
-  $(`div[data-cell-index]`).on(multiClick, gameEvents.onNewMove)
+  // if (!store.over || (
+  if (!store.over) {
+    $(`div[data-cell-index]`).on(multiClick, gameEvents.onNewMove)
+  }
   $('#load-game').on('submit', gameEvents.onLoadGame)
   // $('#index-game').on('submit', gameEvents.onIndexGame)
 })
