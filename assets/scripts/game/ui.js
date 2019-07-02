@@ -45,8 +45,6 @@ const score = (input) => {
   }
 }
 
-// GAME LOGIC END ///////////////////////////////////
-
 const indexGameSuccess = (res) => {
   score(res.games)
 }
