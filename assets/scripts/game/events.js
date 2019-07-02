@@ -4,6 +4,7 @@ const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
+const win = require('./win')
 store.turn = 'z'
 
 const onIndexGame = () => {
@@ -36,34 +37,27 @@ const onLoadGame = (event) => {
 const onNewMove = (event) => {
   event.preventDefault()
   const index = parseInt(event.target.getAttribute('data-cell-index'))
-  // console.log(index)
-  // console.log(index >= 0)
-  if (!(index >= 0)) {
-    return store.game
-  } else {
-    const data = {
-      "game": { // eslint-disable-line
-        "cell": { // eslint-disable-line
-          "index": index, // eslint-disable-line
-          "value": store.turn // eslint-disable-line
-        },
-        "over": store.game.over // eslint-disable-line
-      }
-    }
-    if (store.game.cells[index] !== '' && store.game.cells !== ['', '', '', '', '', '', '', '', '']) {
+  if (index >= 0) {
+    if (store.game.cells[index] !== '') {
       ui.failMessage(`That cell is already taken ${store.user.token}`)
     } else {
+      store.game.cells[index] = store.turn
+      if (win.outcome(store.game)) {
+        store.game.over = true
+      }
+      const data = {
+        "game": { // eslint-disable-line
+          "cell": { // eslint-disable-line
+            "index": index, // eslint-disable-line
+            "value": store.turn // eslint-disable-line
+          },
+          "over": store.game.over // eslint-disable-line
+        }
+      }
       api.newMove(data)
         .then(ui.newMoveSuccess)
         .catch(ui.newMoveFailure)
-      console.log('store.game', store.game)
-      console.log('outcome', ui.outcome(store.game))
-      console.log('DATA 2', data)
     }
-    // const res = api.indexGame() // .responseJSON // .games
-    // console.log('response data', res)
-    // console.log('res.responseJSON', res.games)
-    // console.log('typeof response data', typeof res)
   }
   onIndexGame()
 }

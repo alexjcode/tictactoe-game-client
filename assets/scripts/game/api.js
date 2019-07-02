@@ -24,7 +24,7 @@ const newGame = () => {
 }
 
 const loadGame = (data) => {
-  console.log(data)
+  // console.log(data)
   return $.ajax({
     url: config.apiUrl + '/games/' + data.games.id,
     method: 'GET',

@@ -29,8 +29,7 @@ const signInSuccessful = responseData => {
   // console.log('responseData is', responseData)
   // store user token
   store.user = responseData.user
-  const token = store.user.token
-  successMessage(`You signed in successfully! ${token}`)
+  successMessage(`You signed in successfully!`)
   $('#sign-up').hide()
   $('#sign-in').hide()
   $('#sign-out').show()
@@ -61,6 +60,7 @@ const signOutSuccessful = () => {
   $('#current-turn').hide()
   $('#new-game').hide()
   $('#load-game').hide()
+  $('#tt-divider').hide()
 }
 
 const signOutFailure = () => {

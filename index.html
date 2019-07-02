@@ -3,9 +3,7 @@
     <head>
       <title>Tic-Tac-Toe Game</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-      <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
@@ -19,111 +17,92 @@
       <section>
         <h3 id="message"></h3>
       </section>
-
       <section>
         <h3 id="scorekeeper"></h3>
         <h4 id="scorekeeper2"></h4>
       </section>
-
       <section>
         <h3 id="current-game"></h3>
       </section>
-
       <section>
         <h3 id="current-turn"></h3>
       </section>
 
-      <!-- // -->
+      <!-- // GAME START // -->
 
-      <div class="row">
-        <!-- // GAME START // -->
+      <div class="row ttt">
         <div id="tt-board" class="tt-board container col-lg-8">
           <div class="row">
-            <div class="tt-cell col" data-cell-index="0">
+            <div class="tt-cell cell-t cell-l col" data-cell-index="0">
             </div>
-            <div class="tt-cell col" data-cell-index="1">
+            <div class="tt-cell cell-t col" data-cell-index="1">
             </div>
-            <div class="tt-cell col" data-cell-index="2">
+            <div class="tt-cell cell-t cell-r col" data-cell-index="2">
             </div>
           </div>
           <div class="row">
-            <div class="tt-cell col" data-cell-index="3">
+            <div class="tt-cell cell-l col" data-cell-index="3">
             </div>
             <div class="tt-cell col" data-cell-index="4">
             </div>
-            <div class="tt-cell col" data-cell-index="5">
+            <div class="tt-cell cell-r col" data-cell-index="5">
             </div>
           </div>
           <div class="row">
-            <div class="tt-cell col" data-cell-index="6">
+            <div class="tt-cell cell-b cell-l col" data-cell-index="6">
             </div>
-            <div class="tt-cell col" data-cell-index="7">
+            <div class="tt-cell cell-b col" data-cell-index="7">
             </div>
-            <div class="tt-cell col" data-cell-index="8">
+            <div class="tt-cell cell-b cell-r col" data-cell-index="8">
             </div>
           </div>
         </div>
+
         <!-- // GAME END // -->
-        <div class="tt-board container col-lg-1"></div>
+
+        <div id="tt-divider" class="container col-lg-1"></div>
+
         <!-- // MENU // -->
-        <div id="game-menu" class="col-lg-3">
+
+        <div id="game-menu" class="col">
           <form id="new-game" class="row">
             <button class="btn btn-primary btn-block">New Game</button>
           </form>
           <form id="load-game" class="row">
-            <h4>Load Game</h4>
+            <h4 class="col">Load Game</h4>
             <input class="form-control" required type="number" placeholder="Enter Game ID Here" name="games[id]">
             <button class="btn btn-primary btn-block">Submit</button>
           </form>
+          <form id="change-password" class="row">
+            <h4 class="col">Change Password</h4>
+            <input class="form-control" type="password" name="passwords[old]" placeholder="Don't Use Ye Olde 123!!!">
+            <input class="form-control" type="password" name="passwords[new]" placeholder="Don't Use Ye Neue 1234!!!!">
+            <button class="btn btn-primary btn-block">Change Password</button>
+          </form>
+          <form id="sign-out" class="sign-out row">
+            <button class="btn btn-primary btn-block">Sign Out</button>
+          </form>
         </div>
-        <!-- // -->
+
       </div>
 
-      <!-- // -->
-
-      <div class="row">
-
-        <!-- // -->
-
-        <form id="sign-up" class="col-md-6 mb-5">
-          <h2>Sign Up</h2>
+      <div class="col">
+        <form id="sign-up" class="row">
+          <h2 class="col">Sign Up</h2>
           <input class="form-control" type="email" name="credentials[email]" placeholder="tom@myspace.com">
           <input class="form-control" type="password" name="credentials[password]" placeholder="Don't Use 1234!!!">
           <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
           <button class="btn btn-primary btn-block">Sign Up</button>
         </form>
+      </div>
 
-        <!-- // -->
-
-        <form id="sign-in" class="col-md-6">
-          <h2>Sign In</h2>
+      <div class="col">
+        <form id="sign-in" class="row">
+          <h2 class="col">Sign In</h2>
           <input class="form-control" type="email" name="credentials[email]" placeholder="tom@myspace.com">
           <input class="form-control" type="password" name="credentials[password]" placeholder="Don't Use 1234!!!">
           <button class="btn btn-primary btn-block">Sign In</button>
         </form>
-
-        <!-- // -->
-
-        <form id="change-password" class="col-md-6">
-          <h2>Change Password</h2>
-          <input class="form-control" type="password" name="passwords[old]" placeholder="Don't Use Ye Olde 123!!!">
-          <input class="form-control" type="password" name="passwords[new]" placeholder="Don't Use Ye Neue 1234!!!!">
-          <button class="btn btn-primary btn-block">Change Password</button>
-        </form>
-
-        <!-- // -->
-
-        <form id="sign-out" class="sign-out col">
-          <button class="btn btn-primary btn-block">Sign Out</button>
-        </form>
-
-        <!-- // -->
-
-        <form id="index-game" class="sign-out col">
-          <button class="btn btn-primary btn-block">index game</button>
-        </form>
-
       </div>
-      <!-- // -->
     </body>
 </html>

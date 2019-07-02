@@ -1,5 +1,26 @@
 # Tic Tac Toe Game
 
+## Technologies Used
+- Atom
+- Git
+- GitHub
+- SASS
+- Node Dependencies
+- JavaScript
+- jQuery
+- tic-tac-toe-wdi API
+- Photoshop
+
+## Planning
+First I created the sign in functionality, and the game winning logic. I didn't touch the win logic until later.
+I used a numbered tag on each clickable div, allowing me to tie each div to an index that could be sent to the api.
+
+This will be the base of the game logic, and then I will need to set up events for checking a box, authenticating login actions, and when a player wins the game.
+
+Document your planning and tell a story about your development process and problem-solving strategy.
+List unsolved problems which would be fixed in future iterations.
+Link to wireframes and user stories.
+
 ## Desktop Wireframe
 ![Wireframe: Desktop](https://i.imgur.com/0cXIyim.png)
 ## Tablet Wireframe
@@ -11,7 +32,7 @@
 I will represent the game board in JS as an array of objects, with different states (unchecked, X, and O)
 
 ## Plan of Approach
-I will use the array numbering to figure out which coordinates when checked are equvalent to a win. This will be the base of the game logic, and then I will need to set up events for checking a box, authenticating login actions, and when a player wins the game.
+
 
 ## User stories
 As a player with a friend nearby, I want to be able to play this game with them and keep score.

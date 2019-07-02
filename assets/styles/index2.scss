@@ -52,11 +52,3 @@ h1, h2, h3, h4 {
 .game-board {
   height: 100vmin;
 }
-
-.tt-cell:nth-child(3n) {
-  border-right: 0;
-}
-
-.tt-cell:nth-child(-1n + 3) {
-  border-right: 0;
-}

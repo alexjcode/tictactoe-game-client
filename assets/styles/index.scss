@@ -3,6 +3,10 @@
 $black: #000;
 $primary: #ff1493;
 
+* {
+  text-align: center;
+}
+
 .border {
   border: 3px solid $black;
   margin: 20px;
@@ -21,10 +25,6 @@ $primary: #ff1493;
   padding-top: 20px;
 }
 
-.game-board {
-  background-color: #000;
-}
-
 .container {
   text-align: center;
 }
@@ -34,8 +34,10 @@ h1, h2, h3, h4 {
   padding: 0 auto;
 }
 
-.ttboard {
+.ttt {
   // height: 40%;
+  padding: 20px;
+  margin: 20px;
 }
 
 .tt-cell {
@@ -47,8 +49,27 @@ h1, h2, h3, h4 {
   }
 }
 
-.x {
+.ltr {
   max-height: 90%;
   // vertical-align: middle;
+}
+
+.x {
   padding-top: 16px;
+}
+
+.cell-t {
+  border-top: 0;
+}
+
+.cell-l {
+  border-left: 0;
+}
+
+.cell-r {
+  border-right: 0;
+}
+
+.cell-b {
+  border-bottom: 0;
 }
