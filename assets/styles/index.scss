@@ -7,6 +7,10 @@ $primary: #ff1493;
   text-align: center;
 }
 
+// body {
+//   background: url('../../public/images/back.jpg')
+// }
+
 .border {
   border: 3px solid $black;
   margin: 20px;
@@ -43,7 +47,7 @@ h1, h2, h3, h4 {
 .tt-cell {
   height: 175px;
   max-height: 100%;
-  border: 1px solid blue;
+  border: 1px solid black;
   &:hover {
     background-color: pink;
   }
@@ -73,3 +77,9 @@ h1, h2, h3, h4 {
 .cell-b {
   border-bottom: 0;
 }
+
+// .btn {
+//   color: #fff;
+//   background-color: #000;
+//   border-color: #000;
+// }
