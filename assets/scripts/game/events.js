@@ -24,7 +24,7 @@ const onNewGame = () => {
     .catch(ui.newGameFailure)
   store.turn = 'x'
   $('#current-turn').text(store.turn)
-  onIndexGame()
+  // onIndexGame()
   clicks++
 }
 
@@ -36,13 +36,12 @@ const onLoadGame = (event) => {
   api.loadGame(formData)
     .then(ui.loadGameSuccess)
     .catch(ui.loadGameFailure)
-  onIndexGame()
+  // onIndexGame()
   clicks++
 }
 
 const onNewMove = (event) => {
   event.preventDefault()
-  clicks++
   console.log('hiiiiiiiii', a)
   console.log($('#message').text())
   console.log(store.over)
@@ -70,7 +69,8 @@ const onNewMove = (event) => {
         .catch(ui.newMoveFailure)
     }
   }
-  onIndexGame()
+  // onIndexGame()
+  clicks++
 }
 
 module.exports = {

@@ -5,6 +5,10 @@
 const store = require('../store.js')
 const win = require('./win')
 // const events = require('./events')
+let xWins = 0
+let oWins = 0
+let draws = 0
+let totalGames = 0
 
 const successMessage = message => {
   $('#message').text(message)
@@ -20,40 +24,47 @@ const failMessage = message => {
   $('form').trigger('reset')
 }
 
-const score = (input) => {
-  let xWins = 0
-  let oWins = 0
-  let draws = 0
-  let totalGames = 0
-  for (let i = 0; i < input.length; i++) {
-    const game = input[i]
-    if (game.over === true) {
-      if (win.outcome(game) === 'x') {
-        xWins++
-      } else if (win.outcome(game) === 'o') {
-        oWins++
-      } else if (win.outcome(game) === 'z') {
-        draws++
-      } else {
-        totalGames--
-      }
-      totalGames++
-    }
-  }
-  if (!store.game.cells || store.game.over !== false) {
-    $('#scorekeeper').text(`${xWins} : ${totalGames}`)
-    $('#scorekeeper2').text(`${xWins} Wins, ${oWins} Losses, ${draws} Draws`)
-  }
+const resetScore = () => {
+  xWins = 0
+  oWins = 0
+  draws = 0
+  totalGames = 0
 }
 
-const indexGameSuccess = (res) => {
-  score(res.games)
-}
+// const score = (input) => {
+//   let xWinz = 0
+//   let oWinz = 0
+//   let drawz = 0
+//   totalGames = 0
+//   for (let i = 0; i < input.length; i++) {
+//     const game = input[i]
+//     if (game.over === true) {
+//       if (win.outcome(game) === 'x') {
+//         xWinz++
+//       } else if (win.outcome(game) === 'o') {
+//         oWinz++
+//       } else if (win.outcome(game) === 'z') {
+//         drawz++
+//       } else {
+//         totalGames--
+//       }
+//       totalGames++
+//     }
+//   }
+// }
 
-const indexGameFailure = () => {
-  // console.log(`Index failure`, error)
-  failMessage(`Index failure`)
-}
+// const indexGameSuccess = (res) => {
+//   score(res.games)
+//   if (!store.game.cells || store.game.over !== false) {
+//     $('#scorekeeper').text(`${xWins} : ${totalGames}`)
+//     $('#scorekeeper2').text(`${xWins} Wins, ${oWins} Losses, ${draws} Draws`)
+//   }
+// }
+//
+// const indexGameFailure = () => {
+//   // console.log(`Index failure`, error)
+//   failMessage(`Index failure`)
+// }
 
 const newGameSuccess = (responseData) => {
   store.game = responseData.game
@@ -90,18 +101,30 @@ const newMoveSuccess = (data) => {
   }
   $('#current-turn').text(store.turn)
   successMessage(`New move [${store.game.id}]`)
-  score(store.game)
+  // score(store.game)
   const winning = win.outcome(store.game)
   if (winning === 'z') {
     successMessage(`This match ends in a draw`)
     $('#tt-board').hide()
     $('#current-turn').hide()
     $('#tt-divider').hide()
+    totalGames++
+    draws++
+    $('#scorekeeper').text(`${xWins} : ${totalGames}`)
+    $('#scorekeeper2').text(`${xWins} Wins, ${oWins} Losses, ${draws} Draws`)
   } else if (winning) {
     successMessage(`${winning} is the victor`)
     $('#tt-board').hide()
     $('#current-turn').hide()
     $('#tt-divider').hide()
+    totalGames++
+    if (winning === 'x') {
+      xWins++
+    } else if (winning === 'o') {
+      oWins++
+    }
+    $('#scorekeeper').text(`${xWins} : ${totalGames}`)
+    $('#scorekeeper2').text(`${xWins} Wins, ${oWins} Losses, ${draws} Draws`)
   }
 }
 
@@ -151,10 +174,11 @@ module.exports = {
   successMessage,
   newGameSuccess,
   newGameFailure,
-  indexGameSuccess,
-  indexGameFailure,
+  // indexGameSuccess,
+  // indexGameFailure,
   newMoveSuccess,
   newMoveFailure,
   loadGameSuccess,
-  loadGameFailure
+  loadGameFailure,
+  resetScore
 }
