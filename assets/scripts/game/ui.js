@@ -94,8 +94,14 @@ const newMoveSuccess = (data) => {
   const winning = win.outcome(store.game)
   if (winning === 'z') {
     successMessage(`This match ends in a draw`)
+    $('#tt-board').hide()
+    $('#current-turn').hide()
+    $('#tt-divider').hide()
   } else if (winning) {
     successMessage(`${winning} is the victor`)
+    $('#tt-board').hide()
+    $('#current-turn').hide()
+    $('#tt-divider').hide()
   }
 }
 
