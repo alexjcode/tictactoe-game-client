@@ -4,6 +4,7 @@
 
 const store = require('../store.js')
 const win = require('./win')
+// const events = require('./events')
 
 const successMessage = message => {
   $('#message').text(message)
@@ -39,7 +40,7 @@ const score = (input) => {
       totalGames++
     }
   }
-  if (!score.game || score.game.over !== false) {
+  if (!store.game.cells || store.game.over !== false) {
     $('#scorekeeper').text(`${xWins} : ${totalGames}`)
     $('#scorekeeper2').text(`${xWins} Wins, ${oWins} Losses, ${draws} Draws`)
   }
