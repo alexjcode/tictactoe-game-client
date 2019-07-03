@@ -54,8 +54,10 @@ h1, h2, h3, h4 {
 }
 
 .ltr {
+  display: block;
   max-height: 90%;
-  // vertical-align: middle;
+  margin: auto;
+  vertical-align: middle;
 }
 
 .x {

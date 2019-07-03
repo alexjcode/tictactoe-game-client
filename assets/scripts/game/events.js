@@ -2,11 +2,11 @@
 
 const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
-const ui = require('./ui.js')
+const ui = require('../ui.js')
 const store = require('../store.js')
 const win = require('./win')
 store.turn = 'z'
-let a = 0
+// let a = 0
 let clicks = 0
 
 const onIndexGame = () => {
@@ -42,10 +42,10 @@ const onLoadGame = (event) => {
 
 const onNewMove = (event) => {
   event.preventDefault()
-  console.log('hiiiiiiiii', a)
-  console.log($('#message').text())
-  console.log(store.over)
-  a++
+  // console.log('hiiiiiiiii', a)
+  // console.log($('#message').text())
+  // console.log(store.over)
+  // a++
   const index = parseInt(event.target.getAttribute('data-cell-index'))
   if (index >= 0) {
     if (store.game.cells[index] !== '') {

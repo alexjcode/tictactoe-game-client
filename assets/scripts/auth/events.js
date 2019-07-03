@@ -2,8 +2,9 @@
 
 const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
-const ui = require('./ui.js')
-const gameUi = require('../game/ui.js')
+const ui = require('../ui.js')
+// const gameUi = require('../game/ui.js')
+const store = require('../store.js')
 
 // ui.xWins
 // ui.oWins
@@ -39,7 +40,11 @@ const onChangePassword = (event) => {
 
 const onSignOut = (event) => {
   event.preventDefault()
-  gameUi.resetScore()
+  // gameUi.resetScore()
+  store.xWins = 0
+  store.oWins = 0
+  store.draws = 0
+  store.totalGames = 0
   api.signOut()
     .then(ui.signOutSuccessful)
     .catch(ui.signOutFailure)
