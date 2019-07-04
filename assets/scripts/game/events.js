@@ -2,12 +2,10 @@
 
 const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
-const ui = require('../ui.js')
+const ui = require('./ui.js')
 const store = require('../store.js')
 const win = require('./win')
 store.turn = 'z'
-// let a = 0
-let clicks = 0
 
 const onIndexGame = () => {
   event.preventDefault()
@@ -18,34 +16,24 @@ const onIndexGame = () => {
 
 const onNewGame = () => {
   event.preventDefault()
-  clicks = 0
   api.newGame()
     .then(ui.newGameSuccess)
     .catch(ui.newGameFailure)
   store.turn = 'x'
   $('#current-turn').text(store.turn)
-  // onIndexGame()
-  clicks++
 }
 
 const onLoadGame = (event) => {
   event.preventDefault()
-  clicks = 0
   const form = event.target
   const formData = getFormFields(form)
   api.loadGame(formData)
     .then(ui.loadGameSuccess)
     .catch(ui.loadGameFailure)
-  // onIndexGame()
-  clicks++
 }
 
 const onNewMove = (event) => {
   event.preventDefault()
-  // console.log('hiiiiiiiii', a)
-  // console.log($('#message').text())
-  // console.log(store.over)
-  // a++
   const index = parseInt(event.target.getAttribute('data-cell-index'))
   if (index >= 0) {
     if (store.game.cells[index] !== '') {
@@ -69,14 +57,11 @@ const onNewMove = (event) => {
         .catch(ui.newMoveFailure)
     }
   }
-  // onIndexGame()
-  clicks++
 }
 
 module.exports = {
   onNewGame,
   onIndexGame,
   onLoadGame,
-  onNewMove,
-  clicks
+  onNewMove
 }

@@ -19,6 +19,7 @@ $(() => {
   $('#current-turn').hide()
   $('#new-game').hide()
   $('#load-game').hide()
+  $('#index-game').hide()
 })
 
 $(() => {
@@ -27,10 +28,9 @@ $(() => {
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
   $('#new-game').on('submit', gameEvents.onNewGame)
-  // if (!store.over || (
   if (!store.over) {
     $(`div[data-cell-index]`).on(multiClick, gameEvents.onNewMove)
   }
   $('#load-game').on('submit', gameEvents.onLoadGame)
-  // $('#index-game').on('submit', gameEvents.onIndexGame)
+  $('#index-game').on('submit', gameEvents.onIndexGame)
 })

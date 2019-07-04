@@ -6,6 +6,11 @@ const store = require('../store.js')
 const win = require('./win')
 // const events = require('./events')
 
+let xIndex = 0
+let oIndex = 0
+let drawsIndex = 0
+let totalGamesIndex = 0
+
 const successMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('failure')
@@ -27,40 +32,37 @@ const resetScore = () => {
   store.totalGames = 0
 }
 
-// const score = (input) => {
-//   let xWinz = 0
-//   let oWinz = 0
-//   let drawz = 0
-//   totalGames = 0
-//   for (let i = 0; i < input.length; i++) {
-//     const game = input[i]
-//     if (game.over === true) {
-//       if (win.outcome(game) === 'x') {
-//         xWinz++
-//       } else if (win.outcome(game) === 'o') {
-//         oWinz++
-//       } else if (win.outcome(game) === 'z') {
-//         drawz++
-//       } else {
-//         totalGames--
-//       }
-//       totalGames++
-//     }
-//   }
-// }
+const score = (input) => {
+  xIndex = 0
+  oIndex = 0
+  drawsIndex = 0
+  totalGamesIndex = 0
+  for (let i = 0; i < input.length; i++) {
+    const game = input[i]
+    if (game.over === true) {
+      if (win.outcome(game) === 'x') {
+        xIndex++
+      } else if (win.outcome(game) === 'o') {
+        oIndex++
+      } else if (win.outcome(game) === 'z') {
+        drawsIndex++
+      } else {
+        totalGamesIndex--
+      }
+      totalGamesIndex++
+    }
+  }
+}
 
-// const indexGameSuccess = (res) => {
-//   score(res.games)
-//   if (!store.game.cells || store.game.over !== false) {
-//     $('#scorekeeper').text(`${xWins} : ${totalGames}`)
-//     $('#scorekeeper2').text(`${xWins} Wins, ${oWins} Losses, ${draws} Draws`)
-//   }
-// }
-//
-// const indexGameFailure = () => {
-//   // console.log(`Index failure`, error)
-//   failMessage(`Index failure`)
-// }
+const indexGameSuccess = (res) => {
+  score(res.games)
+  $('#message').text(`${xIndex} Wins, ${oIndex} Losses, ${drawsIndex} Draws [ ${totalGamesIndex} Total Games ]`)
+}
+
+const indexGameFailure = (error) => {
+  console.log(`Index failure`, error)
+  failMessage(`Index failure`)
+}
 
 const newGameSuccess = (responseData) => {
   store.game = responseData.game
@@ -83,10 +85,10 @@ const newMoveSuccess = (data) => {
   for (let i = 0; i < 9; i++) {
     cell = store.game.cells[i]
     if (cell === 'x') {
-      // $(`div[data-cell-index=${i}]`).html('X')
+      // Add 'x' image to clicked cell
       $(`div[data-cell-index=${i}]`).html('<img src="public/images/x2.png" alt="x" class="ltr x">')
     } else if (cell === 'o') {
-      // $(`div[data-cell-index=${i}]`).html('O')
+      // Add 'o' image to clicked cell
       $(`div[data-cell-index=${i}]`).html('<img src="public/images/o.png" alt="o" class="ltr o">')
     }
   }
@@ -97,7 +99,6 @@ const newMoveSuccess = (data) => {
   }
   $('#current-turn').text(store.turn)
   successMessage(`New move [${store.game.id}]`)
-  // score(store.game)
   const winning = win.outcome(store.game)
   if (winning === 'z') {
     successMessage(`This match ends in a draw`)
@@ -125,7 +126,6 @@ const newMoveSuccess = (data) => {
 }
 
 const newMoveFailure = () => {
-  // console.log(`new move failure`, error)
   failMessage(`Couldn't move. Try again [${store.game.id}]`)
 }
 
@@ -140,11 +140,11 @@ const loadGameSuccess = (responseData) => {
   for (let i = 0; i < 9; i++) {
     cell = store.game.cells[i]
     if (cell === 'x') {
-      // $(`div[data-cell-index=${i}]`).html('X')
+      // Add 'x' image to clicked cell
       $(`div[data-cell-index=${i}]`).html('<img src="public/images/x2.png" alt="x" class="ltr x">')
       xCells++
     } else if (cell === 'o') {
-      // $(`div[data-cell-index=${i}]`).html('O')
+      // Add 'o' image to clicked cell
       $(`div[data-cell-index=${i}]`).html('<img src="public/images/o.png" alt="o" class="ltr o">')
       oCells++
     }
@@ -157,12 +157,10 @@ const loadGameSuccess = (responseData) => {
     store.turn = 'z'
   }
   successMessage(`Game Loaded [${store.game.id}]`)
-  // console.log(store)
 }
 
 const loadGameFailure = () => {
-  // console.log(`update book failure`, error)
-  failMessage(`This game does not exist [${store.game.id}]`)
+  failMessage(`Invalid game request [${store.game.id}]`)
 }
 
 module.exports = {
@@ -170,8 +168,8 @@ module.exports = {
   successMessage,
   newGameSuccess,
   newGameFailure,
-  // indexGameSuccess,
-  // indexGameFailure,
+  indexGameSuccess,
+  indexGameFailure,
   newMoveSuccess,
   newMoveFailure,
   loadGameSuccess,

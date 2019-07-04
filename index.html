@@ -65,21 +65,24 @@
         <!-- // MENU // -->
 
         <div id="game-menu" class="col">
-          <form id="new-game" class="row">
+          <form id="new-game" class="btn-pad row">
             <button class="btn btn-primary btn-block">New Game</button>
           </form>
-          <form id="load-game" class="row">
+          <form id="index-game" class="btn-pad row">
+            <button class="btn btn-primary btn-block">Get Scores</button>
+          </form>
+          <form id="load-game" class="btn-pad row">
             <h4 class="col">Load Game</h4>
             <input class="form-control" required type="number" placeholder="Enter Game ID Here" name="games[id]">
             <button class="btn btn-primary btn-block">Submit</button>
           </form>
-          <form id="change-password" class="row">
+          <form id="change-password" class="btn-pad row">
             <h4 class="col">Change Password</h4>
             <input class="form-control" type="password" name="passwords[old]" placeholder="Don't Use Ye Olde 123!!!">
             <input class="form-control" type="password" name="passwords[new]" placeholder="Don't Use Ye Neue 1234!!!!">
             <button class="btn btn-primary btn-block">Change Password</button>
           </form>
-          <form id="sign-out" class="sign-out row">
+          <form id="sign-out" class="btn-pad row">
             <button class="btn btn-primary btn-block">Sign Out</button>
           </form>
         </div>
@@ -87,7 +90,7 @@
       </div>
 
       <div class="col">
-        <form id="sign-up" class="row">
+        <form id="sign-up" class="btn-pad row">
           <h2 class="col">Sign Up</h2>
           <input class="form-control" type="email" name="credentials[email]" placeholder="tom@myspace.com">
           <input class="form-control" type="password" name="credentials[password]" placeholder="Don't Use 1234!!!">
@@ -97,7 +100,7 @@
       </div>
 
       <div class="col">
-        <form id="sign-in" class="row">
+        <form id="sign-in" class="btn-pad row">
           <h2 class="col">Sign In</h2>
           <input class="form-control" type="email" name="credentials[email]" placeholder="tom@myspace.com">
           <input class="form-control" type="password" name="credentials[password]" placeholder="Don't Use 1234!!!">
