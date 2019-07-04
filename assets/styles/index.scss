@@ -46,7 +46,7 @@ h1, h2, h3, h4 {
 
 .tt-cell {
   height: 175px;
-  max-height: 100%;
+  max-height: 20vw;
   border: 1px solid black;
   &:hover {
     background-color: pink;
@@ -55,6 +55,7 @@ h1, h2, h3, h4 {
 
 .ltr {
   display: block;
+  max-width: 90%;
   max-height: 90%;
   margin: auto;
   vertical-align: middle;
@@ -78,6 +79,10 @@ h1, h2, h3, h4 {
 
 .cell-b {
   border-bottom: 0;
+}
+
+.tt-divider {
+  height: 45px;
 }
 
 // .btn {
