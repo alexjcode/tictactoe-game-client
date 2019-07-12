@@ -26,10 +26,12 @@ First I created the sign in functionality, and the game winning logic. I used a 
 Desktop / Tablet / Mobile
 
 ## User stories
-- As a busy player who is slow at tic-tac-toe, I want to be able to resume a game from earlier, so I can finish it on my schedule
-- As a cautious user, I want to be able to change my password, so I can stay secure
-- As an admin, I want the game to disable moves when a game ends and not allow repeat moves, so the scoring is accurate
-- As an admin, I want the game to require a sign in, so I can analyze the stats of the users
+- As a user, I want to be able to sign in and out
+- As a user, I want to be able to change my password
+- As a user, I want to be able to see my scores
+- As a user, I want to be able to see the outcome when a game ends
+- As a user, I want the game to disable moves when a game ends, and not allow repeat moves
+- As a user, I want to be able to resume an incomplete game from earlier
 
 ## Version control
 I commited about once for every hour of work. Using git, i worked on a brach of the main repository, and merged to the main after adding features with working code, in order to separate the testing code from the main code.
